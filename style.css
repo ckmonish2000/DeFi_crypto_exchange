@@ -1,3 +1,7 @@
+body{
+  background: #F3F5FA;
+}
+
 .card{
   width: 50%;
   margin: auto;
@@ -26,7 +30,8 @@
 }
 
 .swap_box{
-  display: flex;
+  display: grid;
+  grid-template-columns: 50% 50%;
   margin:5pt;
   justify-content: space-around;
   align-items: center;
@@ -39,6 +44,9 @@
   width:100%
 }
 
+.cardz{
+  background: #F3F5FA;
+}
 
 #token_select_2:hover{
   text-shadow: 1px 3px 3px;

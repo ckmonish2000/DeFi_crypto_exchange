@@ -64,6 +64,7 @@ function selectToken(address) {
 
     token_select1.innerHTML = `
     <img class="token_List_img" src="${Global_Tokens[address]?.logoURI}" />
+    <span>${Global_Tokens[address]?.symbol}</span>
     `
   }
   else {
@@ -71,6 +72,7 @@ function selectToken(address) {
     currentTrade["to"] = Global_Tokens[address]
     token_select2.innerHTML = `
     <img class="token_List_img" src="${Global_Tokens[address]?.logoURI}" />
+    <span>${Global_Tokens[address]?.symbol}</span>
     `
   }
 
