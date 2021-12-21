@@ -52,5 +52,15 @@
 }
 
 .modal{
-  background:rgba(0, 0, 0, 0.3)
+  background:rgba(0, 0, 0, 0.3);
+}
+
+.modal-body{
+  height:600px;
+  overflow-y:scroll;
+}
+
+.token_List_img{
+  width:40pt;
+  height:40pt;
 }

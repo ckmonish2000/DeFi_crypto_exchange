@@ -26,6 +26,29 @@ document.getElementById("btn-login").onclick = login;
 document.getElementById("btn-logout").onclick = logOut;
 
 
+async function init() {
+  await Moralis.initPlugins();
+  await Moralis.enable();
+
+  const tokens = await Moralis.Plugins.oneInch.getSupportedTokens({
+    chain: 'eth', // The blockchain you want to use (eth/bsc/polygon)
+  });
+
+  let parent = document.querySelector(".token_list")
+
+  for (const address in tokens?.tokens) {
+    const div = document.createElement("div")
+    div.className = "token_row";
+    const html = `
+    <img class="token_List_img" src="${tokens?.tokens[address]?.logoURI}"/>
+    <span>${tokens?.tokens[address]?.symbol}</span>
+    `
+    div.innerHTML = html;
+    parent.appendChild(div);
+    console.log(tokens?.tokens[address])
+  }
+}
+
 const token_select1 = document.querySelector("#token_select_1")
 const token_select2 = document.querySelector("#token_select_2")
 
@@ -39,4 +62,6 @@ function OpenModal() {
 function CloseModal() {
   document.querySelector(".modal").style.display = "none"
 }
-console.log(token_select1)
+
+
+init();
