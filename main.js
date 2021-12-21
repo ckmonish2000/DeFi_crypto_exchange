@@ -48,15 +48,14 @@ async function init() {
     <img class="token_List_img" src="${tokens?.tokens[address]?.logoURI}"/>
     <span>${tokens?.tokens[address]?.symbol}</span>
     `
-    div.onclick = selectToken
+    div.onclick = () => { selectToken(address) }
     div.innerHTML = html;
     parent.appendChild(div);
   }
 }
 
-function selectToken(event) {
+function selectToken(address) {
   CloseModal()
-  let address = event.target.getAttribute("data-address")
 
   if (selected === "from") {
     const token_select1 = document.querySelector("#token_select_1")
@@ -96,5 +95,25 @@ function CloseModal() {
   document.querySelector(".modal").style.display = "none"
 }
 
+
+const from_token_ip = document.querySelector("#from_amout")
+const to_token_ip = document.querySelector("#to_amout")
+
+from_token_ip.addEventListener("blur", async () => {
+  let current_value = Number(from_token_ip.value) * 10 ** currentTrade?.from?.decimals
+
+
+  if (!currentTrade?.from || !currentTrade?.to || !current_value) return;
+
+  const quote = await Moralis.Plugins.oneInch.quote({
+    chain: 'eth', // The blockchain you want to use (eth/bsc/polygon)
+    fromTokenAddress: currentTrade?.from?.address,
+    toTokenAddress: currentTrade?.to?.address,
+    amount: current_value,
+  });
+  console.log(quote);
+  to_token_ip.value = (quote?.toTokenAmount) / (10 ** quote?.toToken?.decimals)
+
+})
 
 init();
