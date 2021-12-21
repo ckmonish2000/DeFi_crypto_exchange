@@ -98,6 +98,7 @@ function CloseModal() {
 
 const from_token_ip = document.querySelector("#from_amout")
 const to_token_ip = document.querySelector("#to_amout")
+const gas_tag = document.querySelector(".gas_charges")
 
 from_token_ip.addEventListener("blur", async () => {
   let current_value = Number(from_token_ip.value) * 10 ** currentTrade?.from?.decimals
@@ -112,6 +113,7 @@ from_token_ip.addEventListener("blur", async () => {
     amount: current_value,
   });
   console.log(quote);
+  gas_tag.innerHTML = `Estimated Gas: ${quote.estimatedGas}`;
   to_token_ip.value = (quote?.toTokenAmount) / (10 ** quote?.toToken?.decimals)
 
 })
