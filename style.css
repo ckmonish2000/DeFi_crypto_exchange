@@ -19,7 +19,34 @@
   padding: 8pt;
   border-radius: 10pt;
   border: 1px solid rgba(0,0,0,0.4);
-  flex: 1;
-  width: 250pt;
+  flex: 0.5;
+  margin: 0pt 5pt;
 
+
+}
+
+.swap_box{
+  display: flex;
+  margin:5pt;
+  justify-content: space-around;
+  align-items: center;
+  padding:10pt;
+  border-radius: 10pt;
+  width:100%
+}
+
+.btn-primary{
+  width:100%
+}
+
+
+#token_select_2:hover{
+  background: rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+
+#token_select_1:hover{
+  background: rgba(0,0,0,0.2);
+  cursor: pointer;
 }

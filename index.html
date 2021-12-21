@@ -14,6 +14,7 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="#">DEX</a>
          <div>
+
           <button style="margin:5pt 10pt;" class="btn btn-success" aria-current="page" id="btn-login">Moralis Metamask Login</button>
           <button style="margin:5pt 10pt;" class="btn btn-danger" aria-current="page" id="btn-logout">Logout</button>
          </div>
@@ -29,14 +30,35 @@
       <div class="card-body" id="card-body">
         
         <div class="swap_box">
+        <div id="token_select_1">TOKEN SELECT</div>
         <input class="number form_control" placeholder="amount" id="from_amout"      />
         </div>
+
         <br/>
         <div class="swap_box">
-          <input class="number form_control" placeholder="amount" id="to_amout"      />
-          </div>
-          <br/>
+        <div id="token_select_2">TOKEN SELECT</div>
+        <input class="number form_control" placeholder="amount" id="to_amout"      />
+        </div>
+
+        <br/>
         <a href="#" class="btn btn-primary">Exchange</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Select Token</h5>
+          <button onclick="CloseModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+          <button onclick="CloseModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>

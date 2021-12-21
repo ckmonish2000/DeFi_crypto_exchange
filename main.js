@@ -24,3 +24,19 @@ async function logOut() {
 
 document.getElementById("btn-login").onclick = login;
 document.getElementById("btn-logout").onclick = logOut;
+
+
+const token_select1 = document.querySelector("#token_select_1")
+const token_select2 = document.querySelector("#token_select_2")
+
+token_select1.addEventListener("click", OpenModal)
+token_select2.addEventListener("click", OpenModal)
+
+function OpenModal() {
+  document.querySelector(".modal").style.display = "block"
+}
+
+function CloseModal() {
+  document.querySelector(".modal").style.display = "none"
+}
+console.log(token_select1)
