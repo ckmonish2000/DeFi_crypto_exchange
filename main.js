@@ -132,10 +132,15 @@ async function trySwap() {
       fromAddress: currentTrade?.from?.address, // Your wallet address
       amount: current_value,
     });
-    console.log(`The user has enough allowance: ${allowance}`);
-    // if (allowance >= amount) {
 
-    // }
+    if (!allowance) {
+      await Moralis.Plugins.oneInch.approve({
+        chain: 'eth', // The blockchain you want to use (eth/bsc/polygon)
+        tokenAddress: currentTrade?.from?.address, // The token you want to swap
+        fromAddress: address, // Your wallet address
+      });
+
+    }
   }
 
 }
