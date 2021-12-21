@@ -63,4 +63,18 @@
 .token_List_img{
   width:40pt;
   height:40pt;
+  margin-right: 15pt;
+}
+
+.token_row{
+  display: flex;
+  align-items: center;
+  padding:10pt;
+  margin: 5pt;
+}
+
+.token_row:hover{
+  background: rgba(0,0,0,0.6);
+  color: white;
+  cursor: pointer;
 }
