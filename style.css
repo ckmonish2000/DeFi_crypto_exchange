@@ -41,13 +41,13 @@
 
 
 #token_select_2:hover{
-  background: rgba(0,0,0,0.2);
+  text-shadow: 1px 3px 3px;
   cursor: pointer;
 }
 
 
 #token_select_1:hover{
-  background: rgba(0,0,0,0.2);
+  text-shadow: 1px 3px 3px;
   cursor: pointer;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .modal-body{
-  height:600px;
+  height:50vh;
   overflow-y:scroll;
 }
 
