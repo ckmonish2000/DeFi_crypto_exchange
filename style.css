@@ -1,0 +1,25 @@
+.card{
+  width: 50%;
+  margin: auto;
+  margin-top: 50pt;
+}
+
+
+.card-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form_control{
+  
+  outline: none;
+  padding: 8pt;
+  border-radius: 10pt;
+  border: 1px solid rgba(0,0,0,0.4);
+  flex: 1;
+  width: 250pt;
+
+}
