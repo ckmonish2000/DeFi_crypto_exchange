@@ -3,6 +3,8 @@ const serverUrl = "https://uu4mrqtsqnp6.usemoralis.com:2053/server";
 const appId = "lA5uMfaNA0tXg5pk2ix2HdUSDujjf3QWeGYyHBQM";
 Moralis.start({ serverUrl, appId });
 
+const currentTrade = {};
+
 /** Add from here down */
 async function login() {
   let user = Moralis.User.current();
@@ -39,14 +41,22 @@ async function init() {
   for (const address in tokens?.tokens) {
     const div = document.createElement("div")
     div.className = "token_row";
+    div.setAttribute("data-address", address)
     const html = `
     <img class="token_List_img" src="${tokens?.tokens[address]?.logoURI}"/>
     <span>${tokens?.tokens[address]?.symbol}</span>
     `
+    div.onclick = selectToken
     div.innerHTML = html;
     parent.appendChild(div);
-    console.log(tokens?.tokens[address])
   }
+}
+
+function selectToken(event) {
+  CloseModal()
+  let address = event.target.getAttribute("data-address")
+  console.log(address)
+
 }
 
 const token_select1 = document.querySelector("#token_select_1")
