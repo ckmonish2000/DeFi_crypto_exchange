@@ -4,6 +4,8 @@ const appId = "lA5uMfaNA0tXg5pk2ix2HdUSDujjf3QWeGYyHBQM";
 Moralis.start({ serverUrl, appId });
 
 const currentTrade = {};
+let selected = "";
+let Global_Tokens;
 
 /** Add from here down */
 async function login() {
@@ -35,7 +37,7 @@ async function init() {
   const tokens = await Moralis.Plugins.oneInch.getSupportedTokens({
     chain: 'eth', // The blockchain you want to use (eth/bsc/polygon)
   });
-
+  Global_Tokens = tokens?.tokens
   let parent = document.querySelector(".token_list")
 
   for (const address in tokens?.tokens) {
@@ -55,15 +57,37 @@ async function init() {
 function selectToken(event) {
   CloseModal()
   let address = event.target.getAttribute("data-address")
-  console.log(address)
+  if (selected === "from") {
+    const token_select1 = document.querySelector("#token_select_1")
+    currentTrade["from"] = Global_Tokens[address]
+
+    token_select1.innerHTML = `
+    <img class="token_List_img" src="${Global_Tokens[address]?.logoURI}" />
+    <span>${Global_Tokens[address]?.symbol}</span>
+    `
+  }
+  else {
+    const token_select2 = document.querySelector("#token_select_2")
+    currentTrade["to"] = Global_Tokens[address]
+    token_select2.innerHTML = `
+    <img class="token_List_img" src="${Global_Tokens[address]?.logoURI}" />
+    <span>${Global_Tokens[address]?.symbol}</span>
+    `
+  }
 
 }
 
 const token_select1 = document.querySelector("#token_select_1")
 const token_select2 = document.querySelector("#token_select_2")
 
-token_select1.addEventListener("click", OpenModal)
-token_select2.addEventListener("click", OpenModal)
+token_select1.addEventListener("click", () => {
+  OpenModal()
+  selected = "from"
+})
+token_select2.addEventListener("click", () => {
+  OpenModal()
+  selected = "to"
+})
 
 function OpenModal() {
   document.querySelector(".modal").style.display = "block"
