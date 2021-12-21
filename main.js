@@ -57,13 +57,13 @@ async function init() {
 function selectToken(event) {
   CloseModal()
   let address = event.target.getAttribute("data-address")
+
   if (selected === "from") {
     const token_select1 = document.querySelector("#token_select_1")
     currentTrade["from"] = Global_Tokens[address]
 
     token_select1.innerHTML = `
     <img class="token_List_img" src="${Global_Tokens[address]?.logoURI}" />
-    <span>${Global_Tokens[address]?.symbol}</span>
     `
   }
   else {
@@ -71,7 +71,6 @@ function selectToken(event) {
     currentTrade["to"] = Global_Tokens[address]
     token_select2.innerHTML = `
     <img class="token_List_img" src="${Global_Tokens[address]?.logoURI}" />
-    <span>${Global_Tokens[address]?.symbol}</span>
     `
   }
 
