@@ -13,6 +13,7 @@ async function login() {
   if (!user) {
     try {
       user = await Moralis.authenticate({ signingMessage: "Hello World!" })
+      document.querySelector("#exchange_btn").disabled = false;
       console.log(user)
       console.log(user.get('ethAddress'))
     } catch (error) {
@@ -99,6 +100,7 @@ function CloseModal() {
 const from_token_ip = document.querySelector("#from_amout")
 const to_token_ip = document.querySelector("#to_amout")
 const gas_tag = document.querySelector(".gas_charges")
+const exchage_btn = document.querySelector("#exchange_btn")
 
 from_token_ip.addEventListener("blur", async () => {
   let current_value = Number(from_token_ip.value) * 10 ** currentTrade?.from?.decimals
@@ -112,10 +114,32 @@ from_token_ip.addEventListener("blur", async () => {
     toTokenAddress: currentTrade?.to?.address,
     amount: current_value,
   });
-  console.log(quote);
+
   gas_tag.innerHTML = `Estimated Gas: ${quote.estimatedGas}`;
   to_token_ip.value = (quote?.toTokenAmount) / (10 ** quote?.toToken?.decimals)
 
 })
+
+async function trySwap() {
+  // get current use address
+  let address = Moralis.User.current().get("ethAddress")
+  let current_value = Number(from_token_ip.value) * 10 ** currentTrade?.from?.decimals
+
+  if (currentTrade?.from?.symbol !== "ETH") {
+    const allowance = await Moralis.Plugins.oneInch.hasAllowance({
+      chain: 'eth', // The blockchain you want to use (eth/bsc/polygon)
+      fromTokenAddress: currentTrade?.from?.address, // The token you want to swap
+      fromAddress: currentTrade?.from?.address, // Your wallet address
+      amount: current_value,
+    });
+    console.log(`The user has enough allowance: ${allowance}`);
+    // if (allowance >= amount) {
+
+    // }
+  }
+
+}
+
+exchage_btn.addEventListener('click', trySwap)
 
 init();
